@@ -55,6 +55,7 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
+<<<<<<< HEAD
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.readonlyInclude": {
     "{**/.c4z/.extsrcs/*.PROTSYM.cbl,**/.c4z/.extsrcs/*.PROTSYM.listing}": true
@@ -65,4 +66,7 @@
     "clang-diagnostic-error",
     "clang-diagnostic-error"
   ]
+=======
+  "C_Cpp_Runner.msvcSecureNoWarnings": false
+>>>>>>> 109f113 (SOME ACTION)
 }
