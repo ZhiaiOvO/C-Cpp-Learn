@@ -4,11 +4,11 @@
 using namespace std;
 
 typedef struct LNode{
-    int data;
+    int  data;
     LNode * next;
-}LinkList;
+}LNode, *LinkList;
 
-void DelElem(LinkList *L, int e){
+void DelElem(LinkList &L, int e){
     if (L->next == NULL) {
         return;
     }
@@ -21,26 +21,28 @@ void DelElem(LinkList *L, int e){
         DelElem(p, e);
     }
 }
-void initList(LinkList *L){
-    LNode * head;
-    L = head;
-    head->next = NULL;
+void initList(LinkList &L){
+    L = new LNode();
+    L->next = NULL;
 }
-void test(LinkList *L){
-    int i = 0;
-    LNode *p = L->next;
-    while(i<=10){
-        p->data = ++i;
-        p = p->next;
+void test(LinkList &L){
+    int i = 10;
+    LNode *p;
+    while(i>0){
+        p = new LNode();
+        p->data = i--;
+        p->next = L->next;
+        L->next = p;
     }
 }
 int main(){
-    LinkList *L;
+    LinkList L;
+    initList(L);
     test(L);
     DelElem(L, 5);
     LNode *p = L->next;
     while(p != NULL){
-        cout<<p->next<<endl;
+        cout<<p->data<<endl;
         p = p->next;
     }
 
