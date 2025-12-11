@@ -13,8 +13,8 @@ void initList(LinkList &L){
 }
 LinkList test(LinkList &L, int n){//此题没有头节点
     int i=1;
-    L = new LNode;
-    L->next = NULL;
+    // L = new LNode;
+    // L->next = NULL;
     while (i<=n) {
         LNode *p = new LNode;
         p->data = i++;
