@@ -20,12 +20,6 @@ void test(LinkList &L){
         L->next = p;
     }
 }
-bool DelElem(LNode *p, LNode *pr){
-    pr->next = p->next;
-    p->next = NULL;
-    delete p;
-    return true;
-}
 bool DelElems(LinkList &L, int a, int b){
     if (a>b||L->next == NULL) {
         return false;
@@ -33,7 +27,8 @@ bool DelElems(LinkList &L, int a, int b){
     LNode *p = L->next,*pr = L;
     while(p != NULL){
         if (p->data >= a && p->data <= b) {
-            DelElem(p, pr);
+            pr->next = p->next;
+            delete p;
             p = pr->next;
             continue;
         }

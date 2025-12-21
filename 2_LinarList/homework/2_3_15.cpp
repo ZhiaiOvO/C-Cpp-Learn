@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <iostream>
 using namespace std;
 
@@ -9,9 +10,9 @@ void initList(LinkList &L){
     L = new LNode();
     L->next = NULL;
 }
-void createListTail(LinkList &L, int n, LNode *&r){
+void createListTail(LinkList &L, int n){
     LNode *s;
-    r = L; // r is the tail pointer
+    LNode * r = L; // r is the tail pointer
     for(int i = 0; i < n; ++i){
         s = new LNode();
         cin >> s->data;
@@ -22,18 +23,25 @@ void createListTail(LinkList &L, int n, LNode *&r){
 }
 int main(){
     LinkList L;
-    LNode *r;
     int n;
     cin >> n;
-    createListTail(L, n, r);
-    LNode *q = L->next;
-    for (int i = 0; i < n; i++)
-    {
-        if (q = r->next)
-        {
-            cout << q->data << endl;
-            break;
-        }
-        q = q->next;
+    createListTail(L, n);
+    LNode *fast = L->next, *slow = L->next;
+    while(fast != NULL && fast->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+        if(fast == slow) break;
     }
+    cout<<endl<<endl;
+    if(fast == NULL){
+        cout<<"-1";
+    }else {
+        LNode * p1 = L->next, * p2 = slow;
+        while(p1 != p2){
+            p1 = p1->next;
+            p2 = p2->next;
+        }
+        cout<<p1<<" "<<p1->data;
+    }
+    return 0;
 }

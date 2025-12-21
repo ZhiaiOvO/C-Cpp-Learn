@@ -27,6 +27,9 @@ void createList(LinkList &L, int &n){
         cin>>in;
     }
 }
+int Abs(int n){
+    return n > 0 ? n : -n;
+}
 int main(){
     LinkList L;
     initList(L);
@@ -38,19 +41,14 @@ int main(){
     }
     LNode *p = L->next;
     LNode *r;
-    while(p != NULL){
-        if(an[p->data] != 0){
+    while(p->next != NULL){
+        if(an[Abs(p->next->data)] != 0){
             r = p->next;
-            if(r == NULL){
-                delete p;
-                break;
-            }
             p->next = r->next;
-            p->data = r->data;
             delete r;
             continue;
         }
-        an[p->data]++;
+        an[Abs(p->next->data)]++;
         p = p->next;
     }
     p = L->next;

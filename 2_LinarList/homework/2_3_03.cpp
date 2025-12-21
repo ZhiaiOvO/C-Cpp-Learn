@@ -21,7 +21,7 @@ void test(LinkList &L){
 }
 void Reserve(LinkList &L){
     LNode *p = L->next;
-    LNode *q = L->next;
+    L->next = NULL;
     LNode *r;
     while(p != NULL){
         r = p->next;
@@ -29,7 +29,6 @@ void Reserve(LinkList &L){
         L->next = p;
         p = r;
     }
-    q->next = NULL;
 }
 int main(){
     LinkList L;

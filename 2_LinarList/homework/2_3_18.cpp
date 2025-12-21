@@ -48,12 +48,12 @@ int main(){
     }
     p1 = L1->next;
     p2 = L2->next;
-    for (int i = 0; i < n1; i++){
+    for (int i = 0; i < n1-n2; i++){
         p1 = p1->next;
     }
     LNode *res = NULL;
     while (p1 != NULL && p2 != NULL){
-        if(p1 == p2){
+        if(p1->data == p2->data){
             res = p1;
             while (res != NULL){
                 cout << res->data;
@@ -61,6 +61,8 @@ int main(){
             }
             break;
         }
+        p1 = p1->next;
+        p2 = p2->next;
     }
     return 0;
 }
