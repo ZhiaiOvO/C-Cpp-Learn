@@ -5,32 +5,33 @@ using namespace std;
 typedef struct LinkNode{
     int data;
     LinkNode * next;
+}LinkNode;
+typedef struct{
+    LinkNode *top;
 }*LinkStack;
 void InitStack(LinkStack &s){
-    s->next = NULL;
+    s->top = NULL;
 }
 bool isEmpty(LinkStack s){
-    return s == NULL;
+    return s->top == NULL;
 }
 bool Push(LinkStack &s, int i){
-    // if(s.top == MaxSize - 1)
-    //     return false;
     LinkNode *p = new LinkNode();
     p->data = i;
-    p->next = s;
-    s = p;
+    p->next = s->top;
+    s->top = p;
     return true;
 }
 bool Pop(LinkStack &s, int &i){
-    if(s == NULL)
+    if(isEmpty(s))
         return false;
-    i = s->data;
-    s = s->next;
+    i = s->top->data;
+    s->top = s->top->next;
     return true;
 }
 bool GetTop(LinkStack s, int &i){
-    if(s == NULL)
+    if(isEmpty(s))
         return false;
-    i = s->data;
+    i = s->top->data;
     return true;
 }
