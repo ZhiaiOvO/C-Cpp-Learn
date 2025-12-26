@@ -25,8 +25,10 @@ bool Push(LinkStack &s, int i){
 bool Pop(LinkStack &s, int &i){
     if(isEmpty(s))
         return false;
-    i = s->top->data;
-    s->top = s->top->next;
+    LinkNode *p = s->top;
+    i = p->data;
+    s->top = p->next;
+    delete p;
     return true;
 }
 bool GetTop(LinkStack s, int &i){

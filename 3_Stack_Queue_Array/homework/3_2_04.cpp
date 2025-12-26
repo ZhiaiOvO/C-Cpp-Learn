@@ -6,8 +6,8 @@ typedef struct LinkNode{
     int data;
     LinkNode * next;
 }LinkNode;
-typedef struct LinkQueue{
-    LinkNode * front, * rear;
+typedef struct {
+    LinkNode * front, *rear;
 }*LinkQueue;
 void InitQueue(LinkQueue &Q){
     Q->front = Q->rear = new LinkNode();
@@ -17,7 +17,11 @@ bool isEmpty(LinkQueue Q){
     return Q->front == Q->rear;
 }
 bool EnQueue(LinkQueue &Q, int i){
-    LinkNode *p = new LinkNode();
+    LinkNode *p;
+    if(Q->rear->next == NULL)
+        p = new LinkNode();
+    else
+        p = Q->rear->next;
     p->data = i;
     p->next = NULL;
     Q->rear->next = p;
@@ -30,7 +34,7 @@ bool DeQueue(LinkQueue &Q, int &i){
     LinkNode *p = Q->front;
     i = p->data;
     Q->front = p->next;
-    delete p;
+    Q->rear->next = p;
     return true;
 }
 bool GetTop(LinkQueue Q, int &i){
@@ -38,4 +42,11 @@ bool GetTop(LinkQueue Q, int &i){
         return false;
     i = Q->front->data;
     return true;
+}
+int main(){
+    LinkQueue Q;
+    InitQueue(Q);
+    EnQueue(Q, 10);
+    EnQueue(Q, 20);
+    return 0;
 }
